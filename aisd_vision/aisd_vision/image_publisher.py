@@ -10,10 +10,10 @@ import cv2
 class ImagePublisher(Node):
 
     def __init__(self):
-        # Initialization of the ROS2 node
+		# Initialization of the ROS2 node
         super().__init__('image_publisher')
         
-        # Publisher that publishes image messages
+	# Publisher that publishes image messages
 	self.publisher_ = self.create_publisher(Image, 'video_frames', 10)
 	timer_period = 0.1
 	self.timer = self.create_timer(timer_period, self.timer_callback)
