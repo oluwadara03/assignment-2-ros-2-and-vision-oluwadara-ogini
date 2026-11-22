@@ -7,8 +7,11 @@ from geometry_msgs.msg import Twist
 
 class Move(Node):
 
+    # Initialize the ROS 2 node with the name 'move'
     def __init__(self):
         super().__init__('move')
+
+        # Hand tracking
         self.subscription = self.create_subscription(
             Hand,
             'cmd_hand',
@@ -18,8 +21,11 @@ class Move(Node):
         self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
 
     def listener_callback(self, msg):
+        # Default initialization
         angle = 0.0
         linear = 0.0
+
+        # Establish turning direction by observing the horizontal index finger position
         if msg.xindex > 0.55:
             self.get_logger().info('right')
             angle = -0.1
@@ -28,6 +34,8 @@ class Move(Node):
             angle = 0.1
         else:
             angle = 0.0
+
+        # Establish forward movement by comparing the hand index and pinky positions
         if msg.xindex > msg.xpinky:
             self.get_logger().info('come')
             linear = 0.5
@@ -47,6 +55,8 @@ def main(args=None):
     rclpy.init(args=args)
     move = Move()
     rclpy.spin(move)
+
+    # Clean up and shut down ROS 2 on exit
     move.destroy_node()
     rclpy.shutdown()
 
