@@ -15,8 +15,8 @@ setup(
     zip_safe=True,
     maintainer='aisd',
     maintainer_email='93853037+oluwadara03@users.noreply.github.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='ROS2 vision setup',
+    license='no license',
     extras_require={
         'test': [
             'pytest',
@@ -24,6 +24,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
+	    'image_publisher = aisd_vision.image_publisher:main',
+ 	    'hands = aisd_vision.hands:main',
         ],
     },
 )
