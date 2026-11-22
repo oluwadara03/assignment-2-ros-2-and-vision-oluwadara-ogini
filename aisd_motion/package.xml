@@ -3,9 +3,13 @@
 <package format="3">
   <name>aisd_motion</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>Motion node that turns hand positions into velocity commands</description>
   <maintainer email="93853037+oluwadara03@users.noreply.github.com">aisd</maintainer>
-  <license>TODO: License declaration</license>
+  <license>no license</license>
+
+  <depend>rclpy</depend>
+  <depend>aisd_msgs</depend>
+  <depend>geometry_msgs</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
