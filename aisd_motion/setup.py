@@ -25,7 +25,6 @@ setup(
     entry_points={
         'console_scripts': [
             'move = aisd_motion.move:main',
-            'move = aisd_motion.move:main',
         ],
     },
 )
