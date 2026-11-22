@@ -10,25 +10,22 @@ import cv2
 class ImagePublisher(Node):
 
     def __init__(self):
-        # Initialization of the ROS2 node
         super().__init__('image_publisher')
-        
-        # Publisher that publishes image messages
-    self.publisher_ = self.create_publisher(Image, 'video_frames', 10)
-    timer_period = 0.1
-    self.timer = self.create_timer(timer_period, self.timer_callback)
-    self.cap = cv2.VideoCapture(0)
-    self.br = CvBridge()
+        self.publisher_ = self.create_publisher(Image, 'video_frames', 10)
+        timer_period = 0.1  # seconds
+        self.timer = self.create_timer(timer_period, self.timer_callback)
+        self.cap = cv2.VideoCapture(0)
+        self.br = CvBridge()
 
     def timer_callback(self):
         ret, frame = self.cap.read()
-    if ret == True:
-        self.publisher_.publish(self.br.cv2_to_imgmsg(frame))
+        if ret == True:
+            self.publisher_.publish(self.br.cv2_to_imgmsg(frame))
 
 
 def main(args=None):
     rclpy.init(args=args)
-    
+
     image_publisher = ImagePublisher()
 
     rclpy.spin(image_publisher)
