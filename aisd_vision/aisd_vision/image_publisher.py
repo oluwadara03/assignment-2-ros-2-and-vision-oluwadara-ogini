@@ -21,7 +21,7 @@ class ImagePublisher(Node):
         self.timer = self.create_timer(timer_period, self.timer_callback)
 
         # Default webcam being used for image conversion
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(1)
         self.br = CvBridge()
 
     def timer_callback(self):
