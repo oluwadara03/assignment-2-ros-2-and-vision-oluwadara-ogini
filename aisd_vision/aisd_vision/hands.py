@@ -64,11 +64,8 @@ class Hands(Node):
                 # Saving the x-axis position of the index finger fingertip
                 msg.xindex = results.multi_hand_landmarks[0].landmark[INDEX_FINGER_TIP].x
 
-                # Send the data if subscriber is currenlty running
-                if self.hand_publisher.get_subscription_count() > 0:
-                    self.hand_publisher.publish(msg)
-                else:
-                    self.get_logger().info('waiting for subcriber')
+                # Publish the detected hand position data
+                self.hand_publisher.publish(msg)
 
 
 def main(args=None):
